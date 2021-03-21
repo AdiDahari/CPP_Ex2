@@ -9,7 +9,7 @@ namespace ariel
 {
     void Board::post(unsigned int r, unsigned int c, Direction d, string msg)
     {
-        if (msg.length() < 1 || r < 0 || c < 0)
+        if (msg.length() < 1)
         {
             __throw_invalid_argument("Invalid Input");
         }
@@ -59,7 +59,7 @@ namespace ariel
 
     void Board::post_horizontal(unsigned int r, unsigned int c, string msg)
     {
-        if (r - 1 < MIN_ROW)
+        if (r - 1 >= 0 && r - 1 < MIN_ROW)
         {
             MIN_ROW = r - 1;
         }
@@ -68,7 +68,7 @@ namespace ariel
         {
             MAX_ROW = r + 2;
         }
-        if (c - 2 < MIN_COL)
+        if (c - 2 >= 0 && c - 2 < MIN_COL)
         {
             MIN_COL = c - 2;
         }
@@ -86,7 +86,11 @@ namespace ariel
 
     void Board::post_vertical(unsigned int r, unsigned int c, string msg)
     {
-        if (r - 1 < MIN_ROW)
+        if (r == 0)
+            MIN_ROW = 0;
+        if (c == 0)
+            MIN_COL = 0;
+        if (r - 1 <= 0 && r - 1 < MIN_ROW)
         {
             MIN_ROW = r - 1;
         }
@@ -95,13 +99,13 @@ namespace ariel
         {
             MAX_ROW = r + 1 + msg.length();
         }
-        if (c - 2 < MIN_COL)
+        if (c - 2 >= 0 && c - 2 < MIN_COL)
         {
-            MIN_ROW = c - 2;
+            MIN_COL = c - 2;
         }
-        if (c + 2 > MAX_COL)
+        if (c + 3 > MAX_COL)
         {
-            MAX_COL = c + 2;
+            MAX_COL = c + 3;
         }
         for (unsigned int i = 0; i < msg.length(); i++)
         {
