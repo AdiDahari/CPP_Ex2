@@ -1,8 +1,7 @@
 /**
  * Demo program for message-board exercise.
  * 
- * Author: Erel Segal-Halevi
- * Since : 2021-03
+ * Author: Adi Dahari
  */
 
 #include "Board.hpp"
@@ -16,31 +15,15 @@ using namespace std;
 int main()
 {
 	ariel::Board b;
-	// board.post(/*row=*/100, /*column=*/200, Direction::Horizontal, "abcd");
-	// cout << board.read(/*row=*/99, /*column=*/201, Direction::Vertical, /*length=*/3) << endl;
-	// 	// prints "_b_" (starts at row 99 which is empty; then at row 100 there is "b"; then row 101 is empty again).
-	// board.post(/*row=*/99, /*column=*/202, Direction::Vertical, "xyz");
-	// cout << board.read(/*row=*/100, /*column=*/200, Direction::Horizontal, /*length=*/6) << endl;
-	// 	// prints "abyd__" (First letters are ab; then y from the "xyz"; then d; then two empty cells).
-	// board.post(90, 170, Direction::Horizontal, "Adi Dahari");
-	// board.post(0, 0, Direction::Vertical, "Test1");
-	// board.post(0, 1, Direction::Horizontal, "Test2");
-	// board.post(0, 6, Direction::Vertical, "Test3");
-	// board.post(4, 1, Direction::Horizontal, "Test4");
-	b.post(0, 0, Direction::Horizontal, "hi");
-	b.post(10, 5, Direction::Horizontal, "Hello");
-	b.post(9, 9, Direction::Vertical, "WORLD");
-	cout << b.read(10, 5, Direction::Horizontal, 5) << endl;
+
+	b.post(0, 0, Direction::Horizontal, "This");
+	b.post(2, 2, Direction::Horizontal, "is");
+	b.post(4, 4, Direction::Horizontal, "Adi");
+	b.post(6, 6, Direction::Horizontal, "Dahari's");
+	b.post(8, 8, Direction::Horizontal, "MessageBoard");
+	b.post(1, 30, Direction::Vertical, "WELCOME");
+	b.post(10, 6, Direction::Horizontal, "(C++ Assignment No.2)");
+
 	b.show();
-	b.post(0, 0, Direction::Vertical, "CHK");
-	b.post(0, 0, Direction::Horizontal, "CHK");
-
-	b.show(); // shows the board in a reasonable way. For example:
-	//    98:  _________
-	//    99:  ____x____
-	//    100: __abyd___
-	//    101: ____z____
-	//    102: _________
-
 	return 0;
 }

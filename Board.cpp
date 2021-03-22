@@ -1,3 +1,20 @@
+/**
+ * The main implementation of the messageboard.
+ * main public methods:
+ * 1. post: posting a string type method on the board, by given coordinates, direction and the string to post.
+ * 2. read: reading the board by given coordinates, direction and length to read.
+ * 3. show: prints the whole board to the screen, each empty cell marked with "_".
+ * 
+ * private methods:
+ * 1. post_horizontal: posting a message on the board horizontally.
+ * 2. post_vertical: psoting a message on the board vertically.
+ * 3. read_horizontal: reading a message from the board horizontally.
+ * 4. read_vertical: reading a message from the board vertically.
+ * 5. rebuild_board: a method for handling the size of the board. if needed, the number of rows/coloumns on the board grows.
+ * 
+ * Author: Adi Dahari 
+ * */
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -7,23 +24,31 @@ using namespace std;
 
 namespace ariel
 {
+    /**
+     * The post method has 2 private methods for inserting horizontally or vertically.
+     * the message argument is checked for emptiness.
+     * */
     void Board::post(unsigned int r, unsigned int c, Direction d, string const &msg)
     {
-        if (msg.length() < 1)
+        if (msg.length() < 1) // checking for empty string input.
         {
             __throw_invalid_argument("Invalid Input");
         }
         else
         {
 
-            bool flag = (d == Direction::Horizontal);
+            bool flag = (d == Direction::Horizontal); // marking the direction using a boolean flag for easy redirection
             flag ? post_horizontal(r, c, msg) : post_vertical(r, c, msg);
         }
     }
 
+    /**
+     * The read method has 2 private methods for reading horizontally or vertically.
+     * r (row) argument and c (column) check for catching a "Out of border" try of reading 
+     * (if the desired coordinates does not exist on board, an exception is thrown).
+     * */
     string Board::read(unsigned int r, unsigned int c, Direction d, unsigned int length)
     {
-        // cout << "ARGS: r = " + to_string(r) + " ,r + length = " + to_string(r + length) + " ,c = " + to_string(c) + " ,c + length= " + to_string(c + length) + " , MAX_ROW = " + to_string(MAX_ROW) + " , MIN_ROW = " + to_string(MIN_ROW) + " , MAX_COL = " + to_string(MAX_COL) + " , MIN_COL = " + to_string(MIN_COL) << endl;
         string msg;
         if ((d == Direction::Horizontal && (r < MIN_ROW || r > MAX_ROW || c < MIN_COL || c + length - 1 > MAX_COL)) ||
             (d == Direction::Vertical && (r < MIN_ROW || r + length - 1 > MAX_ROW || c < MIN_COL || c > MAX_COL)))
@@ -44,6 +69,10 @@ namespace ariel
             return msg;
         }
     }
+
+    /**
+     * The show message converts the vector-type board to an output on screen including row numbers on the left side of the board itself.
+     * */
     void Board::show()
     {
         for (unsigned int i = 0; i < b.size(); i++)
@@ -147,6 +176,12 @@ namespace ariel
         return msg;
     }
 
+    /**
+     * The rebuild-board method handles each change may be caused by posting a new message to the board.
+     * as the map structure keeps all coordinates of the chars on board, 
+     * a new vector board is created and all the existing chars of the map are being copied to the vector board.
+     * This method also handles any spaces or tabs by converting them to '_'.
+     * */
     void Board::rebuild_board()
     {
         b = vector<vector<char>>((MAX_ROW - MIN_ROW), vector<char>(MAX_COL - MIN_COL, '_'));
