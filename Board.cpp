@@ -7,7 +7,7 @@ using namespace std;
 
 namespace ariel
 {
-    void Board::post(unsigned int r, unsigned int c, Direction d, string msg)
+    void Board::post(unsigned int r, unsigned int c, Direction d, string const &msg)
     {
         if (msg.length() < 1)
         {
@@ -57,12 +57,16 @@ namespace ariel
         }
     }
 
-    void Board::post_horizontal(unsigned int r, unsigned int c, string msg)
+    void Board::post_horizontal(unsigned int r, unsigned int c, string const &msg)
     {
         if (r == 0)
+        {
             MIN_ROW = 0;
+        }
         if (c == 0)
+        {
             MIN_COL = 0;
+        }
         if (r - 1 >= 0 && r - 1 < MIN_ROW)
         {
             MIN_ROW = r - 1;
@@ -88,12 +92,16 @@ namespace ariel
         rebuild_board();
     }
 
-    void Board::post_vertical(unsigned int r, unsigned int c, string msg)
+    void Board::post_vertical(unsigned int r, unsigned int c, string const &msg)
     {
         if (r == 0)
+        {
             MIN_ROW = 0;
+        }
         if (c == 0)
+        {
             MIN_COL = 0;
+        }
         if (r - 1 >= 0 && r - 1 < MIN_ROW)
         {
             MIN_ROW = r - 1;

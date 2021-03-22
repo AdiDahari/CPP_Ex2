@@ -16,8 +16,8 @@ namespace ariel
         vector<vector<char>> b;
         map<unsigned int, map<unsigned int, char>> letters;
         unsigned int MIN_ROW, MIN_COL, MAX_ROW, MAX_COL;
-        void post_horizontal(unsigned int r, unsigned int c, string msg);
-        void post_vertical(unsigned int r, unsigned int c, string msg);
+        void post_horizontal(unsigned int r, unsigned int c, string const &msg);
+        void post_vertical(unsigned int r, unsigned int c, string const &msg);
         string read_horizontal(unsigned int r, unsigned int c, unsigned int length);
         string read_vertical(unsigned int r, unsigned int c, unsigned int length);
         void rebuild_board();
@@ -32,7 +32,7 @@ namespace ariel
         }
         ~Board(){};
 
-        void post(unsigned int r, unsigned int c, Direction d, string msg);
+        void post(unsigned int r, unsigned int c, Direction d, string const &msg);
         string read(unsigned int r, unsigned int c, Direction d, unsigned int length);
         void show();
     };
