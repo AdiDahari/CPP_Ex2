@@ -59,12 +59,16 @@ namespace ariel
 
     void Board::post_horizontal(unsigned int r, unsigned int c, string msg)
     {
+        if (r == 0)
+            MIN_ROW = 0;
+        if (c == 0)
+            MIN_COL = 0;
         if (r - 1 >= 0 && r - 1 < MIN_ROW)
         {
             MIN_ROW = r - 1;
         }
 
-        if (r + 1 > MAX_ROW)
+        if (r + 2 > MAX_ROW)
         {
             MAX_ROW = r + 2;
         }
@@ -90,7 +94,7 @@ namespace ariel
             MIN_ROW = 0;
         if (c == 0)
             MIN_COL = 0;
-        if (r - 1 <= 0 && r - 1 < MIN_ROW)
+        if (r - 1 >= 0 && r - 1 < MIN_ROW)
         {
             MIN_ROW = r - 1;
         }
@@ -117,7 +121,7 @@ namespace ariel
     string Board::read_horizontal(unsigned int r, unsigned int c, unsigned int length)
     {
         string msg;
-        for (unsigned int i = 0; i < c + length - MIN_COL; i++)
+        for (unsigned int i = 0; i < length; i++)
         {
             msg.push_back(b[r - MIN_ROW][c - MIN_COL + i]);
         }
@@ -127,7 +131,7 @@ namespace ariel
     string Board::read_vertical(unsigned int r, unsigned int c, unsigned int length)
     {
         string msg;
-        for (unsigned int i = 0; i < r + length - MIN_ROW; i++)
+        for (unsigned int i = 0; i < length; i++)
         {
             msg.push_back(b[r - MIN_ROW + i][c - MIN_COL]);
         }
