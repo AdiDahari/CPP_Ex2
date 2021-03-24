@@ -16,8 +16,6 @@
  * */
 
 #include <iostream>
-#include <string>
-#include <vector>
 #include "Board.hpp"
 #include "Direction.hpp"
 using namespace std;
@@ -28,11 +26,11 @@ namespace ariel
      * The post method has 2 private methods for inserting horizontally or vertically.
      * the message argument is checked for emptiness.
      * */
-    void Board::post(unsigned int r, unsigned int c, Direction d, string const &msg)
+    void Board::post(uint r, uint c, Direction d, string const &msg)
     {
         if (msg.length() < 1) // checking for empty string input.
         {
-            __throw_invalid_argument("Invalid Input");
+            return;
         }
         else
         {
@@ -47,9 +45,13 @@ namespace ariel
      * r (row) argument and c (column) check for catching a "Out of border" try of reading 
      * (if the desired coordinates does not exist on board, an exception is thrown).
      * */
-    string Board::read(unsigned int r, unsigned int c, Direction d, unsigned int length)
+    string Board::read(uint r, uint c, Direction d, uint length)
     {
         string msg;
+        if (length == 0)
+        {
+            return msg;
+        }
         if ((d == Direction::Horizontal && (r < MIN_ROW || r > MAX_ROW || c < MIN_COL || c + length - 1 > MAX_COL)) ||
             (d == Direction::Vertical && (r < MIN_ROW || r + length - 1 > MAX_ROW || c < MIN_COL || c > MAX_COL)))
         {
@@ -75,10 +77,10 @@ namespace ariel
      * */
     void Board::show()
     {
-        for (unsigned int i = 0; i < b.size(); i++)
+        for (uint i = 0; i < b.size(); i++)
         {
             cout << to_string(i + MIN_ROW) + ":\t";
-            for (unsigned int j = 0; j < b[i].size(); j++)
+            for (uint j = 0; j < b[i].size(); j++)
             {
                 cout << b[i][j];
             }
@@ -86,7 +88,7 @@ namespace ariel
         }
     }
 
-    void Board::post_horizontal(unsigned int r, unsigned int c, string const &msg)
+    void Board::post_horizontal(uint r, uint c, string const &msg)
     {
         if (r == 0)
         {
@@ -113,7 +115,7 @@ namespace ariel
         {
             MAX_COL = c + 2 + msg.length();
         }
-        for (unsigned int i = 0; i < msg.length(); i++)
+        for (uint i = 0; i < msg.length(); i++)
         {
             letters[r][c + i] = msg.at(i);
         }
@@ -121,7 +123,7 @@ namespace ariel
         rebuild_board();
     }
 
-    void Board::post_vertical(unsigned int r, unsigned int c, string const &msg)
+    void Board::post_vertical(uint r, uint c, string const &msg)
     {
         if (r == 0)
         {
@@ -148,27 +150,27 @@ namespace ariel
         {
             MAX_COL = c + 3;
         }
-        for (unsigned int i = 0; i < msg.length(); i++)
+        for (uint i = 0; i < msg.length(); i++)
         {
             letters[r + i][c] = msg.at(i);
         }
         rebuild_board();
     }
 
-    string Board::read_horizontal(unsigned int r, unsigned int c, unsigned int length)
+    string Board::read_horizontal(uint r, uint c, uint length)
     {
         string msg;
-        for (unsigned int i = 0; i < length; i++)
+        for (uint i = 0; i < length; i++)
         {
             msg.push_back(b[r - MIN_ROW][c - MIN_COL + i]);
         }
         return msg;
     }
 
-    string Board::read_vertical(unsigned int r, unsigned int c, unsigned int length)
+    string Board::read_vertical(uint r, uint c, uint length)
     {
         string msg;
-        for (unsigned int i = 0; i < length; i++)
+        for (uint i = 0; i < length; i++)
         {
             msg.push_back(b[r - MIN_ROW + i][c - MIN_COL]);
         }

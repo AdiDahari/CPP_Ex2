@@ -17,12 +17,17 @@ int main()
 	ariel::Board b;
 
 	b.post(0, 0, Direction::Horizontal, "This");
+	b.post(0, 0, Direction::Vertical, "This");
 	b.post(2, 2, Direction::Horizontal, "is");
+	b.post(2, 2, Direction::Vertical, "is");
 	b.post(4, 4, Direction::Horizontal, "Adi");
+	b.post(4, 4, Direction::Vertical, "Adi");
 	b.post(6, 6, Direction::Horizontal, "Dahari's");
+	b.post(6, 6, Direction::Vertical, "Dahari's");
 	b.post(8, 8, Direction::Horizontal, "MessageBoard");
-	b.post(1, 30, Direction::Vertical, "WELCOME");
-	b.post(10, 6, Direction::Horizontal, "(C++ Assignment No.2)");
+	b.post(8, 8, Direction::Vertical, "MessageBoard");
+	b.post(0, 30, Direction::Vertical, "W E L C O M E");
+	// b.post(10, 6, Direction::Horizontal, "(C++ Assignment No.2)");
 
 	b.show();
 	return 0;
