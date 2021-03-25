@@ -42,7 +42,7 @@ namespace ariel
 
     /**
      * The read method has 2 private methods for reading horizontally or vertically.
-     * r (row) argument and c (column) check for catching a "Out of border" try of reading 
+     * r (row) argument and c (column) check for catching a "Out of border" if given values not in Board's borders.
      * (if the desired coordinates does not exist on board, an exception is thrown).
      * */
     string Board::read(uint r, uint c, Direction d, uint length)
