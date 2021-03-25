@@ -77,12 +77,12 @@ namespace ariel
      * */
     void Board::show()
     {
-        for (uint i = 0; i < b.size(); i++)
+        for (uint i = MIN_ROW; i < MAX_ROW; i++)
         {
-            cout << to_string(i + MIN_ROW) + ":\t";
-            for (uint j = 0; j < b[i].size(); j++)
+            cout << to_string(i) + ":\t";
+            for (uint j = MIN_COL; j < MAX_COL; j++)
             {
-                cout << b[i][j];
+                cout << board[i][j].letter;
             }
             cout << endl;
         }
@@ -117,10 +117,13 @@ namespace ariel
         }
         for (uint i = 0; i < msg.length(); i++)
         {
-            letters[r][c + i] = msg.at(i);
+            if (msg.at(i) != ' ' && msg.at(i) != '\t')
+            {
+                board[r][c + i].letter = msg.at(i);
+            }
         }
 
-        rebuild_board();
+        // rebuild_board();
     }
 
     void Board::post_vertical(uint r, uint c, string const &msg)
@@ -152,9 +155,12 @@ namespace ariel
         }
         for (uint i = 0; i < msg.length(); i++)
         {
-            letters[r + i][c] = msg.at(i);
+            if (msg.at(i) != ' ' && msg.at(i) != '\t')
+            {
+                board[r + i][c].letter = msg.at(i);
+            }
         }
-        rebuild_board();
+        // rebuild_board();
     }
 
     string Board::read_horizontal(uint r, uint c, uint length)
@@ -162,7 +168,7 @@ namespace ariel
         string msg;
         for (uint i = 0; i < length; i++)
         {
-            msg.push_back(b[r - MIN_ROW][c - MIN_COL + i]);
+            msg.push_back(board[r][c + i].letter);
         }
         return msg;
     }
@@ -172,7 +178,7 @@ namespace ariel
         string msg;
         for (uint i = 0; i < length; i++)
         {
-            msg.push_back(b[r - MIN_ROW + i][c - MIN_COL]);
+            msg.push_back(board[r + i][c].letter);
         }
 
         return msg;
@@ -184,22 +190,22 @@ namespace ariel
      * a new vector board is created and all the existing chars of the map are being copied to the vector board.
      * This method also handles any spaces or tabs by converting them to '_'.
      * */
-    void Board::rebuild_board()
-    {
-        b = vector<vector<char>>((MAX_ROW - MIN_ROW), vector<char>(MAX_COL - MIN_COL, '_'));
-        for (auto const &[k1, v1] : letters)
-        {
-            for (auto const &[k2, v2] : v1)
-            {
-                if (v2 == '\t' || v2 == ' ')
-                {
-                    b[k1 - MIN_ROW][k2 - MIN_COL];
-                }
-                else
-                {
-                    b[k1 - MIN_ROW][k2 - MIN_COL] = v2;
-                }
-            }
-        }
-    }
+    // void Board::rebuild_board()
+    // {
+    //     b = vector<vector<char>>((MAX_ROW - MIN_ROW), vector<char>(MAX_COL - MIN_COL, '_'));
+    //     for (auto const &[k1, v1] : board)
+    //     {
+    //         for (auto const &[k2, v2] : v1)
+    //         {
+    //             if (v2 == '\t' || v2 == ' ')
+    //             {
+    //                 b[k1 - MIN_ROW][k2 - MIN_COL];
+    //             }
+    //             else
+    //             {
+    //                 b[k1 - MIN_ROW][k2 - MIN_COL] = v2;
+    //             }
+    //         }
+    //     }
+    // }
 }

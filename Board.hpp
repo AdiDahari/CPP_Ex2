@@ -17,16 +17,19 @@
 #include <string>
 #include <map>
 #include <limits>
-// using namespace std;
 
 const uint INF = std::numeric_limits<uint>::max();
 namespace ariel
 {
+    struct Node
+    {
+        char letter = '_';
+    };
     class Board
     {
     private:
-        std::vector<std::vector<char>> b;
-        std::map<uint, std::map<uint, char>> letters;
+        // std::vector<std::vector<char>> b;
+        std::map<uint, std::map<uint, Node>> board;
         uint MIN_ROW, MIN_COL, MAX_ROW, MAX_COL;
         void post_horizontal(uint r, uint c, std::string const &msg);
         void post_vertical(uint r, uint c, std::string const &msg);
@@ -37,8 +40,8 @@ namespace ariel
     public:
         Board() // an empty constructor for creating a new board. vector and map initialization.
         {
-            b = std::vector<std::vector<char>>(1, std::vector<char>(0));
-            letters = std::map<uint, std::map<uint, char>>();
+            // b = std::vector<std::vector<char>>(1, std::vector<char>(0));
+            // board = std::map<uint, std::map<uint, char>>();
             MIN_ROW = MIN_COL = INF; // minimum row and col are set initially to maximum value of uint.
             MAX_ROW = MAX_COL = 0;   // maximum row and col are set initially to 0.
         }

@@ -20,7 +20,6 @@ TEST_CASE("Overwriting letters")
 {
     Board b;
     CHECK_NOTHROW(b.post(0, 0, Direction::Horizontal, "First Check"));
-    // CHECK_THROWS(b.read(0, 0, Direction::Horizontal, 0));
     CHECK_NOTHROW(b.post(10, 5, Direction::Horizontal, "Adi"));
     CHECK_NOTHROW(b.post(10, 6, Direction::Horizontal, "Dahari"));
     CHECK(b.read(10, 5, Direction::Horizontal, 7) == "ADahari");
@@ -81,8 +80,13 @@ TEST_CASE("Exceptions expected")
     CHECK_THROWS(b.read(10, 10, Direction::Vertical, 1));
     CHECK_THROWS(b.read(0, 0, Direction::Horizontal, 10));
     CHECK_THROWS(b.read(0, 0, Direction::Vertical, 10));
-    // CHECK_THROWS(b.read(0, 0, Direction::Horizontal, 0));
-    // CHECK_THROWS(b.read(0, 0, Direction::Horizontal, 0));
-    // CHECK_THROWS(b.post(10, 10, Direction::Horizontal, ""));
-    // CHECK_THROWS(b.post(10, 10, Direction::Vertical, ""));
+}
+TEST_CASE("Random posting")
+{
+    Board b;
+    for (int i = 0; i < 100; i++)
+    {
+        CHECK_NOTHROW(b.post((uint)(rand() / 10), (uint)(rand() / 10), Direction::Horizontal, "CHECK " + to_string(i + 1)));
+        CHECK_NOTHROW(b.post((uint)(rand() / 10), (uint)(rand() / 10), Direction::Vertical, "CHECK " + to_string(i + 1)));
+    }
 }

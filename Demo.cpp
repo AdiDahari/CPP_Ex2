@@ -15,21 +15,20 @@ using namespace std;
 int main()
 {
 	ariel::Board b;
-
-	b.post(0, 0, Direction::Horizontal, "This");
-	b.post(0, 0, Direction::Vertical, "This");
-	b.post(2, 2, Direction::Horizontal, "is");
-	b.post(2, 2, Direction::Vertical, "is");
-	b.post(4, 4, Direction::Horizontal, "Adi");
-	b.post(4, 4, Direction::Vertical, "Adi");
-	b.post(6, 6, Direction::Horizontal, "Dahari's");
-	b.post(6, 6, Direction::Vertical, "Dahari's");
-	b.post(8, 8, Direction::Horizontal, "MessageBoard");
-	b.post(8, 8, Direction::Vertical, "MessageBoard");
-	b.post(3, 30, Direction::Vertical, "W E L C O M E !!!");
-	b.post(18, 28, Direction::Horizontal, "! ! !");
-	// b.post(10, 6, Direction::Horizontal, "(C++ Assignment No.2)");
-
+	uint i = (uint)(rand() / 10);
+	b.post(0 + i, 0 + i, Direction::Horizontal, "this");
+	b.post(0 + i, 0 + i, Direction::Vertical, "This");
+	b.post(2 + i, 2 + i, Direction::Horizontal, "is");
+	b.post(2 + i, 2 + i, Direction::Vertical, "Is");
+	b.post(4 + i, 4 + i, Direction::Horizontal, "adi");
+	b.post(4 + i, 4 + i, Direction::Vertical, "Adi");
+	b.post(6 + i, 6 + i, Direction::Horizontal, "dahari's");
+	b.post(6 + i, 6 + i, Direction::Vertical, "Dahari's");
+	b.post(8 + i, 8 + i, Direction::Horizontal, "messageBoard");
+	b.post(8 + i, 8 + i, Direction::Vertical, "MessageBoard");
+	b.post(3 + i, 30 + i, Direction::Vertical, "W E L C O M E !!!");
+	b.post(18 + i, 28 + i, Direction::Horizontal, "! ! !");
+	b.post(10 + i, 6 + i, Direction::Horizontal, "(C++ Assignment No.2)");
 	b.show();
 	return 0;
 }
