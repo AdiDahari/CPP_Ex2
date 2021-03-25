@@ -10,7 +10,6 @@
 #pragma once
 #include "Direction.hpp"
 #include <iostream>
-#include <vector>
 #include <string>
 #include <map>
 #include <limits>
@@ -26,7 +25,6 @@ namespace ariel
     class Board
     {
     private:
-        // std::vector<std::vector<char>> b;
         std::map<uint, std::map<uint, Node>> board;
         uint MIN_ROW, MIN_COL, MAX_ROW, MAX_COL;
         void post_horizontal(uint r, uint c, std::string const &msg);
