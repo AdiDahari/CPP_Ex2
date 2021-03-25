@@ -104,10 +104,7 @@ namespace ariel
         }
         for (uint i = 0; i < msg.length(); i++)
         {
-            if (msg.at(i) != ' ' && msg.at(i) != '\t')
-            {
-                board[r][c + i].letter = msg.at(i);
-            }
+            board[r][c + i].letter = msg.at(i);
         }
     }
 
@@ -140,10 +137,7 @@ namespace ariel
         }
         for (uint i = 0; i < msg.length(); i++)
         {
-            if (msg.at(i) != ' ' && msg.at(i) != '\t')
-            {
-                board[r + i][c].letter = msg.at(i);
-            }
+            board[r + i][c].letter = msg.at(i);
         }
     }
 }

@@ -45,14 +45,7 @@ TEST_CASE("Big sized board")
     CHECK(b.read(0, 0, Direction::Horizontal, 5) == "One__");
     CHECK(b.read(0, 0, Direction::Vertical, 3) == "One");
 }
-TEST_CASE("Underline for space and tab")
-{
-    Board b;
-    CHECK_NOTHROW(b.post(0, 0, Direction::Horizontal, "This is not one unit"));
-    CHECK_NOTHROW(b.post(0, 0, Direction::Vertical, "This\tis\tnot\tone\tunit"));
-    CHECK(b.read(0, 0, Direction::Horizontal, 20) == "This_is_not_one_unit");
-    CHECK(b.read(0, 0, Direction::Vertical, 20) == "This_is_not_one_unit");
-}
+
 TEST_CASE("Pretty printing (center the text area)")
 {
     Board b;
