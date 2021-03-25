@@ -28,13 +28,8 @@ namespace ariel
      * */
     void Board::post(uint r, uint c, Direction d, string const &msg)
     {
-        if (msg.length() < 1) // checking for empty string input.
+        if (msg.length() >= 1) // checking for empty string input.
         {
-            return;
-        }
-        else
-        {
-
             bool flag = (d == Direction::Horizontal); // marking the direction using a boolean flag for easy redirection
             flag ? post_horizontal(r, c, msg) : post_vertical(r, c, msg);
         }
