@@ -60,20 +60,17 @@ namespace ariel
         else
         {
             bool flag = (d == Direction::Horizontal);
-            if (flag)
+            for (uint i = 0; i < length; i++)
             {
-                msg = read_horizontal(r, c, length);
-            }
-            else
-            {
-                msg = read_vertical(r, c, length);
+                msg.push_back(board[r][c].letter);
+                flag ? c++ : r++;
             }
             return msg;
         }
     }
 
     /**
-     * The show message converts the vector-type board to an output on screen including row numbers on the left side of the board itself.
+     * The show message converts the map-type board to an output on screen including row numbers on the left side of the board itself.
      * */
     void Board::show()
     {
@@ -122,8 +119,6 @@ namespace ariel
                 board[r][c + i].letter = msg.at(i);
             }
         }
-
-        // rebuild_board();
     }
 
     void Board::post_vertical(uint r, uint c, string const &msg)
@@ -160,52 +155,5 @@ namespace ariel
                 board[r + i][c].letter = msg.at(i);
             }
         }
-        // rebuild_board();
     }
-
-    string Board::read_horizontal(uint r, uint c, uint length)
-    {
-        string msg;
-        for (uint i = 0; i < length; i++)
-        {
-            msg.push_back(board[r][c + i].letter);
-        }
-        return msg;
-    }
-
-    string Board::read_vertical(uint r, uint c, uint length)
-    {
-        string msg;
-        for (uint i = 0; i < length; i++)
-        {
-            msg.push_back(board[r + i][c].letter);
-        }
-
-        return msg;
-    }
-
-    /**
-     * The rebuild-board method handles each change may be caused by posting a new message to the board.
-     * as the map structure keeps all coordinates of the chars on board, 
-     * a new vector board is created and all the existing chars of the map are being copied to the vector board.
-     * This method also handles any spaces or tabs by converting them to '_'.
-     * */
-    // void Board::rebuild_board()
-    // {
-    //     b = vector<vector<char>>((MAX_ROW - MIN_ROW), vector<char>(MAX_COL - MIN_COL, '_'));
-    //     for (auto const &[k1, v1] : board)
-    //     {
-    //         for (auto const &[k2, v2] : v1)
-    //         {
-    //             if (v2 == '\t' || v2 == ' ')
-    //             {
-    //                 b[k1 - MIN_ROW][k2 - MIN_COL];
-    //             }
-    //             else
-    //             {
-    //                 b[k1 - MIN_ROW][k2 - MIN_COL] = v2;
-    //             }
-    //         }
-    //     }
-    // }
 }
