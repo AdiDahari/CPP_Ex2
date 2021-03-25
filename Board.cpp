@@ -47,11 +47,6 @@ namespace ariel
         {
             return msg;
         }
-        if ((d == Direction::Horizontal && (r < MIN_ROW || r > MAX_ROW || c < MIN_COL || c + length - 1 > MAX_COL)) ||
-            (d == Direction::Vertical && (r < MIN_ROW || r + length - 1 > MAX_ROW || c < MIN_COL || c > MAX_COL)))
-        {
-            __throw_out_of_range("Out of Board's range");
-        }
         else
         {
             bool flag = (d == Direction::Horizontal);

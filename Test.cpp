@@ -70,16 +70,14 @@ TEST_CASE("Pretty printing (center the text area)")
     CHECK_NOTHROW(b.post(46, 50, Direction::Horizontal, "  /\\"));
     CHECK_NOTHROW(b.post(56, 50, Direction::Horizontal, "  \\/"));
 }
-TEST_CASE("Exceptions expected")
+TEST_CASE("Empty board reading")
 {
     Board b;
-    CHECK_THROWS(b.read(0, 0, Direction::Horizontal, 1));
-    b.post(0, 0, Direction::Horizontal, "CHECK");
-    b.post(0, 0, Direction::Vertical, "CHECK");
-    CHECK_THROWS(b.read(10, 10, Direction::Horizontal, 1));
-    CHECK_THROWS(b.read(10, 10, Direction::Vertical, 1));
-    CHECK_THROWS(b.read(0, 0, Direction::Horizontal, 10));
-    CHECK_THROWS(b.read(0, 0, Direction::Vertical, 10));
+    for (int i = 0; i < 10; i++)
+    {
+        CHECK(b.read((uint)rand(), (uint)rand(), Direction::Horizontal, 10) == "__________");
+        CHECK(b.read((uint)rand(), (uint)rand(), Direction::Vertical, 10) == "__________");
+    }
 }
 TEST_CASE("Random posting")
 {
